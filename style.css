@@ -312,7 +312,14 @@ nav {
         aspect-ratio: 16/9;
         scroll-snap-align: center;
     }
-    
+
+    /* Disable reveal slide animation on mobile to prevent overflow glitch */
+    .work-card.reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+
     .slider-controls {
         padding: 0;
         margin-top: 1.5rem;
