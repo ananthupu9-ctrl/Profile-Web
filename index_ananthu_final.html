@@ -39,7 +39,7 @@
                 </div>
             </div>
             <div class="hero-portrait-vFinal">
-                <img src="../PORTFOLIO%202026/Portfolio.png" alt="Ananthu P U" style="height: auto !important; width: 100% !important; max-width: 480px !important; display: block !important; object-fit: contain !important; opacity: 1 !important; visibility: visible !important;">
+                <img src="../PORTFOLIO%202026/Portfolio.png" alt="Ananthu P U">
             </div>
             <div class="scroll-down">
                 <span>Selected Works</span>
@@ -104,6 +104,59 @@
 
     <script>
         lucide.createIcons();
+
+        /* ── Reveal animation observer ── */
+        const revealObs = new IntersectionObserver((entries) => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('active'); });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+        /* ── Video smooth-playback engine ── */
+        const allVideos = document.querySelectorAll('video.work-video');
+
+        // Helper: play only when we have at least some data
+        function safePlay(video) {
+            if (video.readyState >= 2) { // HAVE_CURRENT_DATA
+                video.play().catch(() => {});
+                return;
+            }
+            if (video.preload !== 'auto') {
+                video.preload = 'auto';
+                video.load();
+            }
+            // Use 'canplay' instead of 'canplaythrough' for faster response
+            const playHandler = () => {
+                video.removeEventListener('canplay', playHandler);
+                video.play().catch(() => {});
+            };
+            video.addEventListener('canplay', playHandler);
+        }
+
+        // Main observer – uses VIEWPORT (null root) so it always fires correctly
+        const videoObs = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                const v = e.target.querySelector('video');
+                if (!v) return;
+                if (e.isIntersecting) {
+                    v.preload = 'auto';
+                    // Small delay to prevent jitter on fast scrool
+                    setTimeout(() => {
+                        if (e.target.classList.contains('active')) safePlay(v);
+                    }, 100);
+                } else {
+                    v.pause();
+                }
+            });
+        }, { threshold: 0.3 }); // Only play when 30% visible
+
+        document.querySelectorAll('.work-card').forEach(card => videoObs.observe(card));
+
+        // Start the first video immediately
+        if (allVideos.length > 0) {
+            allVideos[0].preload = 'auto';
+            allVideos[0].load();
+            safePlay(allVideos[0]);
+        }
     </script>
 </body>
 </html>

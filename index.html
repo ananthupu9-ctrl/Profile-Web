@@ -37,7 +37,7 @@
                 </div>
             </div>
             <div class="hero-portrait-vFinal">
-                <img src="./Portfolio.png" alt="Ananthu P U" style="height: auto !important; width: 100% !important; max-width: 480px !important; display: block !important; object-fit: contain !important; opacity: 1 !important; visibility: visible !important;">
+                <img src="./Portfolio.png" alt="Ananthu P U">
             </div>
             <div class="scroll-down">
                 <span>Selected Works</span>
@@ -51,7 +51,7 @@
                     <!-- Item 1 -->
                     <div class="work-card reveal">
                         <div class="image-wrapper">
-                            <video autoplay muted loop playsinline class="work-video">
+                            <video muted loop playsinline preload="metadata" class="work-video">
                                 <source src="work-video.mp4" type="video/mp4">
                             </video>
                         </div>
@@ -59,7 +59,7 @@
                     <!-- Item 2 -->
                     <div class="work-card reveal">
                         <div class="image-wrapper">
-                            <video autoplay muted loop playsinline class="work-video">
+                            <video muted loop playsinline preload="metadata" class="work-video">
                                 <source src="work-video-2.mp4" type="video/mp4">
                             </video>
                         </div>
@@ -67,7 +67,7 @@
                     <!-- Item 3 -->
                     <div class="work-card reveal">
                         <div class="image-wrapper">
-                            <video autoplay muted loop playsinline class="work-video">
+                            <video muted loop playsinline preload="metadata" class="work-video">
                                 <source src="work-video-3.mp4" type="video/mp4">
                             </video>
                         </div>
@@ -75,7 +75,7 @@
                     <!-- Item 4 -->
                     <div class="work-card reveal">
                         <div class="image-wrapper">
-                            <video autoplay muted loop playsinline class="work-video">
+                            <video muted loop playsinline preload="metadata" class="work-video">
                                 <source src="work-video-4.mp4" type="video/mp4">
                             </video>
                         </div>
@@ -83,7 +83,7 @@
                     <!-- Item 5 -->
                     <div class="work-card reveal">
                         <div class="image-wrapper">
-                            <video autoplay muted loop playsinline class="work-video">
+                            <video muted loop playsinline preload="metadata" class="work-video">
                                 <source src="work-video-5.mp4" type="video/mp4">
                             </video>
                         </div>
@@ -91,7 +91,7 @@
                     <!-- Item 6 -->
                     <div class="work-card reveal">
                         <div class="image-wrapper">
-                            <video autoplay muted loop playsinline class="work-video">
+                            <video muted loop playsinline preload="metadata" class="work-video">
                                 <source src="work-video-6.mp4" type="video/mp4">
                             </video>
                         </div>
@@ -99,7 +99,7 @@
                     <!-- Item 7 -->
                     <div class="work-card reveal">
                         <div class="image-wrapper">
-                            <video autoplay muted loop playsinline class="work-video">
+                            <video muted loop playsinline preload="metadata" class="work-video">
                                 <source src="work-video-7.mp4" type="video/mp4">
                             </video>
                         </div>
@@ -107,7 +107,7 @@
                     <!-- Item 8 -->
                     <div class="work-card reveal">
                         <div class="image-wrapper">
-                            <video autoplay muted loop playsinline class="work-video">
+                            <video muted loop playsinline preload="metadata" class="work-video">
                                 <source src="work-video-8.mp4" type="video/mp4">
                             </video>
                         </div>
@@ -115,7 +115,7 @@
                     <!-- Item 9 -->
                     <div class="work-card reveal">
                         <div class="image-wrapper">
-                            <video autoplay muted loop playsinline class="work-video">
+                            <video muted loop playsinline preload="metadata" class="work-video">
                                 <source src="work-video-9.mp4" type="video/mp4">
                             </video>
                         </div>
@@ -123,7 +123,7 @@
                     <!-- Item 10 -->
                     <div class="work-card reveal">
                         <div class="image-wrapper">
-                            <video autoplay muted loop playsinline class="work-video">
+                            <video muted loop playsinline preload="metadata" class="work-video">
                                 <source src="work-video-10.mp4" type="video/mp4">
                             </video>
                         </div>
@@ -131,7 +131,7 @@
                     <!-- Item 11 -->
                     <div class="work-card reveal">
                         <div class="image-wrapper">
-                            <video autoplay muted loop playsinline class="work-video">
+                            <video muted loop playsinline preload="metadata" class="work-video">
                                 <source src="work-video-11.mp4" type="video/mp4">
                             </video>
                         </div>
@@ -139,7 +139,7 @@
                     <!-- Item 12 -->
                     <div class="work-card reveal">
                         <div class="image-wrapper">
-                            <video autoplay muted loop playsinline class="work-video">
+                            <video muted loop playsinline preload="metadata" class="work-video">
                                 <source src="work-video-12.mp4" type="video/mp4">
                             </video>
                         </div>
@@ -217,7 +217,7 @@
             <h2 class="cta-text">Let's craft your <i>next chapter</i>.</h2>
             <div class="contact-grid">
                 <div class="contact-info">
-                    <a href="mailto:hello@ananthu.com" class="main-link">hello@ananthu.com</a>
+                    <a href="mailto:ananthupu9@gmail.com" class="main-link">ananthupu9@gmail.com</a>
                 </div>
                 <div class="contact-meta">
                     <a href="https://www.linkedin.com/in/ananthu-p-u-a9b7a0187/" target="_blank" class="sub-link">LinkedIn Profile</a>
@@ -234,35 +234,100 @@
 
     <script>
         lucide.createIcons();
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
+
+        /* ── Reveal animation observer ── */
+        const revealObs = new IntersectionObserver((entries) => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('active'); });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+        /* ── Video smooth-playback engine ── */
+        const allVideos = document.querySelectorAll('video.work-video');
+
+        // Helper: play only when we have at least some data
+        function safePlay(video) {
+            if (video.readyState >= 2) { // HAVE_CURRENT_DATA
+                video.play().catch(() => {});
+                return;
+            }
+            if (video.preload !== 'auto') {
+                video.preload = 'auto';
+                video.load();
+            }
+            // Use 'canplay' instead of 'canplaythrough' for faster response
+            const playHandler = () => {
+                video.removeEventListener('canplay', playHandler);
+                video.play().catch(() => {});
+            };
+            video.addEventListener('canplay', playHandler);
+        }
+
+        // Main observer – uses VIEWPORT (null root) so it always fires correctly
+        const videoObs = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                const v = e.target.querySelector('video');
+                if (!v) return;
+                if (e.isIntersecting) {
+                    v.preload = 'auto';
+                    // Small delay to prevent jitter on fast scroll
+                    setTimeout(() => {
+                        if (e.target.classList.contains('active')) safePlay(v);
+                    }, 100);
+                } else {
+                    v.pause();
                 }
             });
-        }, { threshold: 0.1 });
+        }, { threshold: 0.3 }); // Only play when 30% visible to save resources
 
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        document.querySelectorAll('.work-card').forEach(card => videoObs.observe(card));
 
+        // Start the first video immediately
+        if (allVideos.length > 0) {
+            allVideos[0].preload = 'auto';
+            allVideos[0].load();
+            safePlay(allVideos[0]);
+        }
+
+        /* ── Slider controls ── */
         const horizontal = document.querySelector('.work-horizontal');
         const prevBtn = document.getElementById('prevBtn');
         const nextBtn = document.getElementById('nextBtn');
         const indicator = document.getElementById('sliderIndicator');
 
-        const scrollAmount = 1130;
+        function navigateSlider(direction) {
+            const cards = [...horizontal.querySelectorAll('.work-card')];
+            if (cards.length === 0) return;
 
-        nextBtn.addEventListener('click', () => {
-            horizontal.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-        });
+            // Find the card currently most in view
+            const containerCenter = horizontal.scrollLeft + horizontal.clientWidth / 2;
+            let currentIndex = 0;
+            let minDistance = Infinity;
 
-        prevBtn.addEventListener('click', () => {
-            horizontal.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-        });
+            cards.forEach((card, index) => {
+                const cardCenter = card.offsetLeft + card.offsetWidth / 2;
+                const distance = Math.abs(containerCenter - cardCenter);
+                if (distance < minDistance) {
+                    minDistance = distance;
+                    currentIndex = index;
+                }
+            });
+
+            let targetIndex = currentIndex + direction;
+            targetIndex = Math.max(0, Math.min(targetIndex, cards.length - 1));
+
+            cards[targetIndex].scrollIntoView({ 
+                behavior: 'smooth', 
+                block: 'nearest', 
+                inline: 'center' 
+            });
+        }
+
+        nextBtn.addEventListener('click', () => navigateSlider(1));
+        prevBtn.addEventListener('click', () => navigateSlider(-1));
 
         horizontal.addEventListener('scroll', () => {
-            const scrollPercent = (horizontal.scrollLeft / (horizontal.scrollWidth - horizontal.clientWidth)) * 100;
-            if (indicator) indicator.style.width = scrollPercent + '%';
+            const pct = (horizontal.scrollLeft / (horizontal.scrollWidth - horizontal.clientWidth)) * 100;
+            if (indicator) indicator.style.width = pct + '%';
         });
     </script>
 </body>
