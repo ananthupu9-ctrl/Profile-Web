@@ -275,9 +275,10 @@
                     }, 100);
                 } else {
                     v.pause();
+                    // Optional: reset current time to save memory if needed, but pause is usually enough
                 }
             });
-        }, { threshold: 0.3 }); // Only play when 30% visible to save resources
+        }, { threshold: 0.6 }); // 60% visibility guarantees ONLY ONE video plays at a time (since mobile cards are 85vw)
 
         document.querySelectorAll('.work-card').forEach(card => videoObs.observe(card));
 
